@@ -1,0 +1,26 @@
+{% extends 'alumnos/base.html' %}
+
+{% block content %}
+<div class="container text-center">
+    <!-- Jumbotron con fondo de color y texto atractivo -->
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenido al Sistema de Gestión de Alumnos</h1>
+        <p class="lead">Gestiona los alumnos de manera eficiente y organizada.</p>
+        <a href="{% url 'listar_alumnos' %}" class="btn btn-primary btn-lg">Ver Alumnos</a>
+    </div>
+
+    <!-- Sección adicional con una breve descripción -->
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <p class="lead">Este sistema permite gestionar a los alumnos de manera sencilla, proporcionando opciones como listar, agregar o buscar alumnos rápidamente.</p>
+        </div>
+    </div>
+    
+    <div class="eye-container">
+        <div class="eye">
+            <div class="pupil"></div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

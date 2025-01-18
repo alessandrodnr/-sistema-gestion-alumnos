@@ -1,0 +1,49 @@
+{% extends 'alumnos/base.html' %}
+
+{% block content %}
+<h2>Buscar Alumno</h2>
+<form method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o apellidos" value="{{ query|default:'' }}">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+</form>
+
+{% if query %}
+    {% if alumnos %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Promedio EM</th>
+                    <th>Fecha Ingreso</th>
+                    <th>Carrera</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno in alumnos %}
+                <tr>
+                    <td>{{ alumno.id }}</td>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.apellido_paterno }}</td>
+                    <td>{{ alumno.apellido_materno }}</td>
+                    <td>{{ alumno.promedio_em }}</td>
+                    <td>{{ alumno.fecha_ingreso|date:"d-m-Y" }}</td>
+                    <td>{{ alumno.get_carrera_display }}</td>
+                    <td>
+                        <a href="{% url 'modificar_alumno' alumno.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                        <a href="{% url 'eliminar_alumno' alumno.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No se encontraron alumnos que coincidan con la búsqueda.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}
