@@ -1,0 +1,1 @@
+web: gunicorn prueba3_nunez.wsgi
